@@ -9,7 +9,7 @@ class AbilitiesAbility(Ability):
         self.keywords = ['abilities','ab']
      
     
-    def getEventsFor(self,player,targetPlayer):
+    def getEventsFor(self,player):
         """Checks what abilities the player has, and sends them 
            a message with this information.
         """
