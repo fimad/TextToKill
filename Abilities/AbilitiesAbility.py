@@ -18,4 +18,4 @@ class AbilitiesAbility(Ability):
         for abilityName in abilities[:-1]:
             msg = msg + abilityName + ', '
         msg = msg + 'and ' + abilities[-1] + '.'
-        SendEvent(player,msg)
+        return [SendEvent(player,msg)]
