@@ -34,9 +34,10 @@ class Parser:
         words = text.partition(' ')
         if words[0] in validKeywords:
             abilityObject = validKeywords[words[0]]
+            restOfString = words[2]
         else:
             abilityObject = Error
-        restOfString = words[2]
+            restOfString = "Incomprehensible keyword, yo!"
         return (sender,abilityObject,restOfString)
             
         
