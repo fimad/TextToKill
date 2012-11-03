@@ -18,9 +18,11 @@ class KillAbility(Ability):
         """ Sends messages to everyone, performs kill event.
         """
         if Game.isValidPlayer(targetPlayer):
+            killEvent = KillEvent(targetPlayer)
+
             events = []
             events.append(BroadcastEvent(targetPlayer.getName() + ' has had a kill placed on them.'))
-            events.append(KillEvent(targetPlayer))
+            events.append(killEvent)
             return (True, events)
         else:
             return (False, SendEvent(player, 'Improperly formatted kill.'))

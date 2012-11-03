@@ -81,7 +81,7 @@ class Game:
         commands = self.parser.parse(self.abilities.values(), newMessages, self.errorAbility)
         for (sender,ability,args) in commands:
             for player in self.players.values():
-                if( player.getContact().matches(sender) ):
+                if( player.getContact() == sender ):
                     ability.getEventsFor(self, player, args)
                     break
 
