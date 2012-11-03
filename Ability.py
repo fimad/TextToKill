@@ -8,7 +8,7 @@ class Ability:
         self.keywords = keywords
 
     def useAbility(self,character):
-        if character.hasAbility():
+        if character.hasAbility(self.name):
                 Character.removeAbility(Ability)
                 return True
         return False
