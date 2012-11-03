@@ -1,0 +1,11 @@
+Rules for raw text that players will send in:
+
+Kill <person>
+Save <person>
+Steal <ability/item> from <person>
+Coerce <person> to use <kill/save> on <person>
+Truthtell on <person>
+Abilities [lists player's current usable abilities]
+
+Anything that is not written in this format will 
+be treated as incomprehensible.
