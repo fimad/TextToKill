@@ -1,9 +1,17 @@
+from Character import Character
+
 class Ability:
     """ An abstract class that specific Abilities should extend
     """
     def __init__(self, name, keywords):
         self.name = name
         self.keywords = keywords
+
+    def useAbility(self,character):
+        if character.hasAbility():
+                Character.removeAbility(Ability)
+                return True
+        return False
 
     def getName(self):
         return self.name
@@ -19,7 +27,7 @@ class Ability:
         """
         pass
 
-
+'''
 class Truthtell(Ability):
     abilityName = 'Truthtell'
     keyword = 'truthtell'
@@ -57,4 +65,4 @@ class Save(Ability):
         #send playerName + ' is not dying' to user
         
 class Error(Ability):
-    
+'''    
