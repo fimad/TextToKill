@@ -1,9 +1,24 @@
-#do not send if blank string
-
 class Ability:
-    abilityName = ''
-    keyword = ''
-    toTarget = ''
+    """ An abstract class that specific Abilities should extend
+    """
+    def __init__(name, keywords):
+        self.name = name
+        self.keywords = keywords
+
+    def getName():
+        return self.name
+
+    def getKeywords():
+        """ Returns a list of keywords for this Ability.
+        """
+        return self.keywords
+
+    def getEventsFor(player, arg):
+        """ Sub-classes must override this method.
+            Returns a list of events that perform the state changes.
+        """
+        pass
+
 
 class Truthtell(Ability):
     abilityName = 'Truthtell'
