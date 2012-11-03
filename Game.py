@@ -7,13 +7,13 @@ class Game:
     """ Defines a running instance of a Murder Mystery.
         Handles the initialization of the various game states.
     """
-    def __init__(self):
-        self.players = {}
-        self.gm = nil #TODO: fill me in some
-        self.abilities = []
-        self.errorAbility = nil #TODO: define me!
+    def __init__(self, abilities, players):
+        self.gm = players[0]
+        self.players = players[1:]
+        self.abilities = abilities
+        self.errorAbility = Error()
         self.eventQueue = Queue.PriorityQueue()
-        self.parser = nil #TODO: define me!
+        self.parser = Parser()
         self.inbox = Inbox()
         self.outbox = Outbox()
 
