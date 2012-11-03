@@ -78,7 +78,7 @@ class Game:
         """
         #process incoming messages
         newMessages = self.inbox.poll()
-        commands = self.parser.parse(self.abilities, newMessages, self.errorAbility)
+        commands = self.parser.parse(self.abilities.values(), newMessages, self.errorAbility)
         for (sender,ability,args) in commands:
             for player in self.players:
                 if( player.contact().matches(sender) ): #TODO: sync this with Player once it's written

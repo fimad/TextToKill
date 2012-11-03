@@ -18,7 +18,7 @@ class SaveAbility(Ability):
         """ Sends messages to everyone, performs save event.
         """
         events = []
-        if Game.isValidPlayer(targetPlayer):
+        if game.isValidPlayer(targetPlayer):
             if targetPlayer in dyingPlayers:
                 events.append(BroadcastEvent(targetPlayer.getName() + ' has had a save used on them.'))
                 events.append(SaveEvent(targetPlayer))
