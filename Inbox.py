@@ -31,8 +31,8 @@ class Inbox:
             conn = imaplib.IMAP4_SSL("imap.gmail.com", 993)
             conn.login(self.gmailAddress, self.gmailPassword)
             conn.select()
-            #typ, data = conn.search(None, 'UNSEEN')
-            typ, data = conn.search(None, 'SEEN')
+            typ, data = conn.search(None, 'UNSEEN')
+            #typ, data = conn.search(None, 'SEEN')
             try:
                 for num in data[0].split():
                     typ, msg_data = conn.fetch(num, '(RFC822)')
