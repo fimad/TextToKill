@@ -13,6 +13,15 @@ class Character:
     
     def getAbilityList(self):
         return self.abilityList
+
+    def hasItem(self, item):
+        return self.itemList.count(item) > 0
+
+    def addItem(self, item):
+        self.itemList.append(item)
+
+    def removeItem(self, item):
+        self.itemList.remove(item)
     
     def getItemList(self):
         return self.itemList

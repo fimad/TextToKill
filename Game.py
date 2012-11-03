@@ -55,6 +55,9 @@ class Game:
     def getPlayerNames(self, name):
         return self.players.keys()
 
+    def removePlayer(self, name):
+        if( self.isValidPlayer(name) ):
+            del self.players[name]
 
     def run(self):
         """ Run the game, and Don't stop.
