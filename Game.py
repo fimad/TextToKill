@@ -3,6 +3,7 @@ from datetime import datetime
 
 from Inbox import Inbox
 from Outbox import Outbox
+from Parser import Parser
 from Abilities.ErrorAbility import ErrorAbility
 
 class Game:
@@ -11,13 +12,19 @@ class Game:
     """
     def __init__(self, abilities, players):
         self.gm = players[0]
-        self.players = players[1:]
-        self.abilities = abilities
         self.errorAbility = ErrorAbility()
         self.eventQueue = Queue.PriorityQueue()
         self.parser = Parser()
         self.inbox = Inbox()
         self.outbox = Outbox()
+
+        self.players = {}
+        for player in players[1:]:
+            self.players[player.getName()] = player
+
+        self.abilities = {}
+        for ability in abilites:
+            self.abilities[ability.getName()] = ability
 
     def getGameMaster(self):
         return self.gm
@@ -33,14 +40,21 @@ class Game:
     def isValidAbility(self, name):
         return name in self.player
 
-    def getPlayer(self, name):
-        return self.player[name]
+    def getAbility(self, name):
+        return self.abilities[name]
+
+    def getAbilityNames(self):
+        return self.abilities.keys()
 
     def isValidPlayer(self, name):
         return name in self.player
 
     def getPlayer(self, name):
         return self.player[name]
+
+    def getPlayerNames(self, name):
+        return self.players.keys()
+
 
     def run(self):
         """ Run the game, and Don't stop.
