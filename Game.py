@@ -1,5 +1,6 @@
 import Queue
 from datetime import datetime
+from time import time
 
 from Inbox import Inbox
 from Outbox import Outbox
@@ -69,8 +70,10 @@ class Game:
         """ Run the game, and Don't stop.
             Ever.
         """
+        print "Starting the main loop!"
         while( True ):
             self.step()
+            time.sleep(5)
 
     def step(self):
         """ Perform one step of the game logic.
