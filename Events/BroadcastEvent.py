@@ -1,11 +1,10 @@
 from Event import Event
 
 class BroadcastEvent(Event):
-    def __init__(self, playerList, message):
+    def __init__(self, message):
         Event.__init__(self)
-        self.playerList = playerList
         self.message = message
 
     def perform(self, game):
-        for player in playerList:
-            game.getOutbox().sendText(self.player.getContact(), self.message)
+        for name in game.getPlayerNames():
+            game.getOutbox().sendText(game.getPlayer(name).getContact(), self.message)
