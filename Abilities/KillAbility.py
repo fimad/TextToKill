@@ -17,6 +17,10 @@ class KillAbility(Ability):
     def onSuccess(self, game, player, targetPlayer):
         """ Sends messages to everyone, performs kill event.
         """
-        BroadcastEvent(targetPlayer.getName() + ' has had a kill placed on them.')
-        KillEvent(targetPlayer)
-        dyingPlayers.add(targetPlayer)
+        events = []
+        if Game.isValidPlayer(targetPlayer):
+            events.append(BroadcastEvent(targetPlayer.getName() + ' has had a kill placed on them.'))
+            events.append(KillEvent(targetPlayer))
+            return (True, events)
+        else:
+            return (False, SendEvent(player, 'Improperly formatted kill.'))

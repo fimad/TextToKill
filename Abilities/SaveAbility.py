@@ -17,8 +17,13 @@ class SaveAbility(Ability):
     def onSuccess(self, game, player, targetPlayer):
         """ Sends messages to everyone, performs save event.
         """
-        if targetPlayer in dyingPlayers:
-            BroadcastEvent(targetPlayer.getName() + ' has had a save used on them.')
-            SaveEvent(targetPlayer)
-        else:
-            SendEvent(player, targetPlayer.get(Name) + ' is not dying.')
+        events = []
+        if Game.isValidPlayer(targetPlayer):
+            if targetPlayer in dyingPlayers:
+                events.append(BroadcastEvent(targetPlayer.getName() + ' has had a save used on them.'))
+                events.append(SaveEvent(targetPlayer))
+            else:
+                events.append(SendEvent(player, targetPlayer.get(Name) + ' is not dying.'))
+            return (True, events)
+         else:
+            return (False, SendEvent(player, 'Improperly formatted save.'))
