@@ -7,8 +7,7 @@ from Ability import Ability
 class TruthtellAbility(Ability):
 
     def __init__(self):
-        self.abilityName = 'Truthtell'
-        self.keywords = ['truthtell','tt']
+        Ability.__init__(self, "Truthtell", ["truthtell","tt"])
     
     def getEventsFor(self,player,args):
         """ Calls guardedEventsFor to check if the player has a truthtell.

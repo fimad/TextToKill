@@ -6,8 +6,7 @@ from Ability import Ability
 class KillAbility(Ability):
 
     def __init__(self):
-        self.abilityName = 'Kill'
-        self.keywords = ['kill', 'k']
+        Ability.__init__(self, "Kill", ["kill","k"])
 
     def getEventsFor(self, player, targetPlayer):
         """ Calls guardedEventsFor to check if the player has a kill.
