@@ -7,7 +7,6 @@ class TruthtellAbility(Ability):
     def __init__(self):
         self.abilityName = 'Truthtell'
         self.keywords = ['truthtell','tt']
-        self.toTarget = 'A truthell is being used on you. Find the game master.'
     
     def getEventsFor(self,player,targetPlayer):
         """ Calls guardedEventsFor to check if the player has a truthtell.
