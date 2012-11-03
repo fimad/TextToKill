@@ -34,6 +34,12 @@ class Game:
         """
         self.eventQueue.put(event)
 
+    def addEvents(self, events):
+        """ Schedules a list of events to be run.
+        """
+        for event in events:
+            self.eventQueue.put(event)
+
     def getOutbox(self):
         return self.outbox
 
@@ -76,7 +82,7 @@ class Game:
         for (sender,ability,args) in commands:
             for player in self.players:
                 if( player.contact().matches(sender) ): #TODO: sync this with Player once it's written
-                    ability.getEventsFor(player, args) #TODO: sync this with Ability once it's written
+                    ability.getEventsFor(self, player, args) #TODO: sync this with Ability once it's written
                     break
 
         #Process the queue of events

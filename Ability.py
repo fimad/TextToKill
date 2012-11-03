@@ -5,7 +5,7 @@ class Ability:
         self.name = name
         self.keywords = keywords
     
-    def guardedEventsFor(self, player, args, onSuccess, wantsOldName = False):
+    def guardedEventsFor(self, game, player, args, onSuccess, wantsOldName = False):
         """ Checks if player has this Ability and if so, removes it
             from their Ability list and calls onSuccess. If player 
             does not have this Ability, returns a SendEvent.
@@ -16,12 +16,12 @@ class Ability:
         if player.getCharacter().hasAbility(self.name):
             oldName = player.getCharacter().removeAbility(self.name)
             if( wantsOldName ):
-                (successful, events) = onSuccess(self, player, args, oldName)
+                (successful, events) = onSuccess(self, game, player, args, oldName)
                 if not successful:
                     player.getCharacter().addAbility(oldName)
                 return events
             else:
-                (successful, events) = onSuccess(self, player, args)
+                (successful, events) = onSuccess(self, game, player, args)
                 if not successful:
                     player.getCharacter().addAbility(oldName)
                 return events
@@ -36,7 +36,7 @@ class Ability:
         """
         return self.keywords
 
-    def getEventsFor(self, player, arg):
+    def getEventsFor(self, game, player, arg):
         """ Sub-classes must override this method.
             Returns a list of events that perform the state changes.
         """

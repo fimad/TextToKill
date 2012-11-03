@@ -9,12 +9,12 @@ class TruthtellAbility(Ability):
     def __init__(self):
         Ability.__init__(self, "Truthtell", ["truthtell","tt"])
     
-    def getEventsFor(self,player,args):
+    def getEventsFor(self,game,player,args):
         """ Calls guardedEventsFor to check if the player has a truthtell.
         """
         return guardedEventsFor(self,player,args)
     
-    def onSuccess(self,player,args):
+    def onSuccess(self,game,player,args):
         """ Parses "rest of string" - should be in the form "on <Player>"
             Sends messages to the player, the target player, and the GM.
             Is called by guardedEventsFor.

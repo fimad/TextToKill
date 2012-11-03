@@ -7,7 +7,7 @@ class ErrorAbility(Ability):
     def __init__(self):
         Ability.__init__(self, "Error", [])
 
-    def getEventsFor(self, player, errorMessage):
+    def getEventsFor(self, game, player, errorMessage):
         """ Sub-classes must override this method.
             Returns a list of events that perform the state changes.
         """

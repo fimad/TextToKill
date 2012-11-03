@@ -9,12 +9,12 @@ class KillAbility(Ability):
         Ability.__init__(self, "Kill", ["kill","k"])
         self.dyingPlayers = []
 
-    def getEventsFor(self, player, targetPlayer):
+    def getEventsFor(self, game, player, targetPlayer):
         """ Calls guardedEventsFor to check if the player has a kill.
         """
         return guardedEventsFor(self, player, targetPlayer)
 
-    def onSuccess(self, player, targetPlayer):
+    def onSuccess(self, game, player, targetPlayer):
         """ Sends messages to everyone, performs kill event.
         """
         BroadcastEvent(targetPlayer.getName() + ' has had a kill placed on them.')

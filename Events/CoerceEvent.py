@@ -7,7 +7,7 @@ class CoerceEvent(Event):
         if ability == 'kill' or if ability == 'k':
             self.Ability = KillAbility()
             self.keyword = 'kill'
-        if ability == 'save' or if ability == 's':
+        if ability == 'save' or if ability == 'sa':
             self.Ability = SaveAbility()
             self.keyword = 'save'
         self.playerName = playerName
