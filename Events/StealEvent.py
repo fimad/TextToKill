@@ -28,6 +28,7 @@ class StealEvent(Event):
         else:
             newName = self.oldName.decrement()
             if( newName.isValid() ):
+                self.player.getCharacter().addAbility(newName)
                 return [ SendEvent(target,"Foiled! You have "+newName.getUsesLeft()+" attempts left for this steal.") ]
             else:
                 return [ SendEvent(target,"Blast! You've exhausted all of steal's attempts.") ]

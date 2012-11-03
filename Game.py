@@ -20,11 +20,11 @@ class Game:
 
         self.players = {}
         for player in players[1:]:
-            self.players[player.getName()] = player
+            self.players[player.getName().lower()] = player
 
         self.abilities = {}
         for ability in abilities:
-            self.abilities[ability.getName()] = ability
+            self.abilities[ability.getName().lower()] = ability
 
     def getGameMaster(self):
         return self.gm
@@ -44,7 +44,7 @@ class Game:
         return self.outbox
 
     def isValidAbility(self, name):
-        return name in self.player
+        return name.lower() in self.abilities
 
     def getAbility(self, name):
         return self.abilities[name]
@@ -53,7 +53,7 @@ class Game:
         return self.abilities.keys()
 
     def isValidPlayer(self, name):
-        return name in self.player
+        return name.lower() in self.player
 
     def getPlayer(self, name):
         return self.player[name]

@@ -7,8 +7,7 @@ from Ability import Ability
 class CoerceAbility(Ability):
 
     def __init__(self):
-        self.abilityName = 'Coerce'
-        self.keywords = ['coerce','co']
+        Ability.__init__(self, "Coerce", ["coerce","co"])
     
     def getEventsFor(self,game,player,args):
         """ Calls guardedEventsFor to check if the player has a Coerce.
@@ -20,11 +19,12 @@ class CoerceAbility(Ability):
         """
         fields = search('(\w+) to use (\w+) on (\w+)',args)
         if fields:
-            if game.isValidPlayer(fields.group(0)) and game.isValidPlayer(fields.group(2)) and fields.group(1) :
-                coerceTargetPlayer = fields.group(0)
-                abilityTargetPlayer = fields.group(2)
-                ability = fields.group(1)
-                return (True, [CoerceEvent(coerceTargetPlayer,ability,abilityTargetPlayer)])
+            if game.isValidPlayer(fields.group(0)) and game.isValidPlayer(fields.group(2)):
+                if fields.group(1) in game.getAbility("Kill").getKeyWords() and fields.group(1) in game.getAbility("Save").getKeyWords():
+                    coerceTargetPlayer = fields.group(0)
+                    abilityTargetPlayer = fields.group(2)
+                    ability = fields.group(1)
+                    return (True, [CoerceEvent(coerceTargetPlayer,ability,abilityTargetPlayer)])
         return (False,[SendEvent(player,"Poorly formatted coerce.")])
         
         
