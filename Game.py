@@ -80,9 +80,9 @@ class Game:
         newMessages = self.inbox.poll()
         commands = self.parser.parse(self.abilities.values(), newMessages, self.errorAbility)
         for (sender,ability,args) in commands:
-            for player in self.players:
-                if( player.contact().matches(sender) ): #TODO: sync this with Player once it's written
-                    ability.getEventsFor(self, player, args) #TODO: sync this with Ability once it's written
+            for player in self.players.values():
+                if( player.getContact().matches(sender) ):
+                    ability.getEventsFor(self, player, args)
                     break
 
         #Process the queue of events
