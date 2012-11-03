@@ -8,11 +8,11 @@ class Player:
         self.contact = contact
         self.character = character
     
-    getName():
+    def getName(self):
         return self.name
     
-    getContact():
+    def getContact(self):
         return self.contact
         
-    getCharacter():
+    def getCharacter(self):
         return self.character
