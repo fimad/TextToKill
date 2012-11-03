@@ -1,8 +1,9 @@
 from datetime import datetime
+from datetime import timedelta
 
 class Event:
-    def __init__(self, time=datetime.now()):
-        self.time = time
+    def __init__(self, offset=0):
+        self.time = datetime.now()+timedelta(offset)
 
     def when(self):
         """ When should this event take place.
