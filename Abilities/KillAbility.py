@@ -8,6 +8,7 @@ class KillAbility(Ability):
     def __init__(self):
         self.abilityName = 'Kill'
         self.keywords = ['kill', 'k']
+        self.dyingPlayers = []
 
     def getEventsFor(self, player, targetPlayer):
         """ Calls guardedEventsFor to check if the player has a kill.
@@ -19,3 +20,4 @@ class KillAbility(Ability):
         """
         BroadcastEvent(targetPlayer.getName() + ' has had a kill placed on them.')
         KillEvent(targetPlayer)
+        dyingPlayers.add(targetPlayer)
