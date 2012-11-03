@@ -2,6 +2,7 @@ from re import search
 from Player import Player
 from Game import Game
 from Event import Event
+from Ability import Ability
 
 class TruthtellAbility(Ability):
 
