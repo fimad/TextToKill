@@ -9,3 +9,5 @@ from Abilities.AbilitiesAbility import AbilitiesAbility
 def test():
     game = Game([AbilitiesAbility(), TruthtellAbility()], [None, Player("Samira", "5036168317@vtext.com", Character("Char",[], ["Truthtell"], "desc")) ])
     game.run()
+
+test()
