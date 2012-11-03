@@ -3,10 +3,10 @@ from OutputAddress import OutputAddress
 
 class Player:
     
-    __init__(self, name, contact, characterName):
+    __init__(self, name, contact, character):
         self.name = name
         self.contact = contact
-        self.characterName = characterName
+        self.character = character
     
     getName():
         return self.name
@@ -14,5 +14,5 @@ class Player:
     getContact():
         return self.contact
         
-    getCharacterName():
-        return self.characterName
+    getCharacter():
+        return self.character
