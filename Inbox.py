@@ -15,7 +15,9 @@ class Inbox:
         """ returns a list of sender, message tuples """
         rawMessages = []
         for inputType in self.inputTypes:
-            rawMessages.append(self.update(inputType))
+            rawMessage = self.update(inputType)
+            if(rawMessage):
+                rawMessages.append(rawMessaget)
         return rawMessages
         
     def extract_body(self, payload):
