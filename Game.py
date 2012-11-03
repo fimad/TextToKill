@@ -9,12 +9,16 @@ class Game:
     """
     def __init__(self):
         self.players = {}
+        self.gm = nil #TODO: fill me in some
         self.abilities = []
         self.errorAbility = nil #TODO: define me!
         self.eventQueue = Queue.PriorityQueue()
         self.parser = nil #TODO: define me!
         self.inbox = Inbox()
         self.outbox = Outbox()
+
+    def getGameMaster(self):
+        return self.gm
 
     def addEvent(self, event):
         """ Schedules an event to be run.
@@ -25,10 +29,10 @@ class Game:
         return self.outbox
 
     def isValidPlayer(self, name):
-        pass
+        return name in self.player
 
     def getPlayer(self, name):
-        pass
+        return self.player[name]
 
     def run(self):
         """ Run the game, and Don't stop.
