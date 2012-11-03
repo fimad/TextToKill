@@ -26,6 +26,8 @@ class Game:
         self.abilities = {}
         for ability in abilities:
             self.abilities[ability.getName().lower()] = ability
+            
+        self.infectedPlayer = None
 
     def getGameMaster(self):
         return self.gm
@@ -101,6 +103,7 @@ class Game:
             if( event.when() < datetime.now() ):
                 print "Performing an event"
                 event.perform(self)
+                print self.infectedPlayer + " is now infected!"
             else:
                 #Doesn't support peeking, so shove it back in the queue if it
                 #shouldn't happen yet

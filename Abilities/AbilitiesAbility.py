@@ -15,7 +15,6 @@ class AbilitiesAbility(Ability):
         """
         abilities = player.getCharacter().getAbilityList()
         msg = 'Your abilities are: '
-        for abilityName in abilities[:-1]:
-            msg = msg + abilityName + ', '
-        msg = msg + 'and ' + abilities[-1] + '.'
+        for abilityName in abilities:
+            msg = msg + abilityName + ' '
         return [SendEvent(player,msg)]

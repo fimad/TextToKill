@@ -41,7 +41,4 @@ class Ability:
             Returns a list of events that perform the state changes.
         """
         pass
-        
-    def getPossibleAbilities():
-        return ['Kill', 'Save', 'Steal', 'Coerce', 'Truthtell'] #please fix me!!!
 
