@@ -15,3 +15,5 @@ class HackAbility(Ability):
         if Game.isValidPlayer(args):
             targetPlayer = Game.getPlayer(args)
             return (True, [SendEvent(targetPlayer,'You\'ve been infected!')])
+        else:
+            return (False, [SendEvent(player,'Typo? (Try again!)')])
