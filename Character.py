@@ -1,21 +1,21 @@
-from abilities import Ability
+from Ability import Ability
 
 class Character:
     
-    __init__(self, name, abilityList, description):
+    def __init__(self, name, itemList, abilityList, description):
         self.name = name
         self.abilityList = abilityList
         self.itemList = itemList
         self.description = description
     
-    getName():
+    def getName(self):
         return self.name
     
-    getAbilityList():
+    def getAbilityList(self):
         return self.abilityList
     
-    get.itemList():
+    def getItemList(self):
         return self.itemList
         
-    get.description():
+    def getDescription(self):
         return self.description

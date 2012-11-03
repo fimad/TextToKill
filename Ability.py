@@ -1,5 +1,3 @@
-from Character import Character
-
 class Ability:
     """ An abstract class that specific Abilities should extend
     """

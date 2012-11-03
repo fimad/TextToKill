@@ -8,13 +8,13 @@ class Game:
         Handles the initialization of the various game states.
     """
     def __init__(self):
-        self.players = []
+        self.players = {}
         self.abilities = []
         self.errorAbility = nil #TODO: define me!
         self.eventQueue = Queue.PriorityQueue()
         self.parser = nil #TODO: define me!
         self.inbox = Inbox()
-        self.outbox = nill #TODO: define me!
+        self.outbox = Outbox()
 
     def addEvent(self, event):
         """ Schedules an event to be run.
@@ -23,6 +23,12 @@ class Game:
 
     def getOutbox(self):
         return self.outbox
+
+    def isValidPlayer(self, name):
+        pass
+
+    def getPlayer(self, name):
+        pass
 
     def run(self):
         """ Run the game, and Don't stop.

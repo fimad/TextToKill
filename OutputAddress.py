@@ -1,7 +1,7 @@
 class OutputAddress:
     """ The base class for all output address.
     """
-    def __init__():
+    def __init__(self):
         pass
 
     def matches(senderString):
