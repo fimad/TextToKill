@@ -1,3 +1,4 @@
+from re import search
 from Player import Player
 from Game import Game
 from Event import Event
@@ -13,17 +14,20 @@ class TruthtellAbility(Ability):
         """
         return guardedEventsFor(self,player,args)
     
-    def onSuccess(self,player,args)
+    def onSuccess(self,player,args):
         """ Parses "rest of string" - should be in the form "on <Player>"
             Sends messages to the player, the target player, and the GM.
             Is called by guardedEventsFor.
         """
-        words = args.partition(' ')
-        if words[2] in Game.getPlayerNames():
-            targetPlayer = words[2]
-            SendEvent(targetPlayer, player.getName() + ' is using a truthtell on you. Please find the game master.')
-            SendEvent(player, player.getName() + ' has been notified. Please find the game master.')   
-            gameMaster = Game.getGameMaster()
-            SendEvent(gameMaster, player.getName() + ' is using a truthtell on ' + player.getName() +'.')
+        fields = search('on (\w+)')
+        if fields:
+            if fields.group(1) in Game.getPlayerNames():
+                targetPlayer = fields.group(1)
+                events = []
+                events.append(SendEvent(targetPlayer, player.getName() + ' is using a truthtell on you. Please find the game master.'))
+                events.append(SendEvent(player, player.getName() + ' has been notified. Please find the game master.'))   
+                gameMaster = Game.getGameMaster()
+                events.append(SendEvent(gameMaster, player.getName() + ' is using a truthtell on ' + player.getName() +'.'))
+                return (True,events)
         else: 
-            SendEvent(targetPlayer, words[2] + ' is not an active player.')
+            return (False,[SendEvent(player,'Improperly formatted truthtell.')]
