@@ -1,6 +1,8 @@
 import Queue
 from datetime import datetime
 
+from Inbox import Inbox
+
 class Game:
     """ Defines a running instance of a Murder Mystery.
         Handles the initialization of the various game states.
@@ -8,14 +10,19 @@ class Game:
     def __init__(self):
         self.players = []
         self.abilities = []
+        self.errorAbility = nil #TODO: define me!
         self.eventQueue = Queue.PriorityQueue()
-        self.inbox = nil #TODO: define me!
         self.parser = nil #TODO: define me!
+        self.inbox = Inbox()
+        self.outbox = nill #TODO: define me!
 
     def addEvent(self, event):
         """ Schedules an event to be run.
         """
         self.eventQueue.put(event)
+
+    def getOutbox(self):
+        return self.outbox
 
     def run(self):
         """ Run the game, and Don't stop.
@@ -30,10 +37,12 @@ class Game:
         """
         #process incoming messages
         newMessages = self.inbox.poll()
-        commands = self.parser.parse(self.abilities, newMessages)
+        commands = self.parser.parse(self.abilities, newMessages, self.errorAbility)
         for (sender,ability,args) in commands:
-            for player in players:
-                pass
+            for player in self.players:
+                if( player.contact().matches(sender) ): #TODO: sync this with Player once it's written
+                    ability.getEventsFor(player, args) #TODO: sync this with Ability once it's written
+                    break
 
         #Process the queue of events
         while( not self.eventQueue.empty() ):

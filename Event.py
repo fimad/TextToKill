@@ -4,14 +4,14 @@ class Event:
     def __init__(self, time=datetime.now()):
         self.time = time
 
-    def when():
+    def when(self):
         """ When should this event take place.
         """
         return self.time
 
-    def perform():
+    def perform(self, game):
         """ Implement this method in children clases to define the semantics of
-            this event
+            this event.  Game is an instance of the current game.
         """
         pass
 
