@@ -86,6 +86,7 @@ class Game:
             print "Handling '"+ability.getName()+"' for '"+sender+"'"
             for player in self.players.values():
                 if( player.getContact() == sender ):
+                    print "\tRunning the ability!"
                     ability.getEventsFor(self, player, args)
                     break
 
