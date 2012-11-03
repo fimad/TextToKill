@@ -17,5 +17,5 @@ class KillAbility(Ability):
     def onSuccess(self, player, targetPlayer):
         """ Sends messages to everyone, performs kill event.
         """
-        BroadcastEvent(targetPlayer.getName() + ' is dying and has 15 minutes to live.')
+        BroadcastEvent(targetPlayer.getName() + ' has had a kill placed on them.')
         KillEvent(targetPlayer)
