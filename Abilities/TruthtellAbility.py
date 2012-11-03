@@ -8,10 +8,10 @@ class TruthtellAbility(Ability):
         self.abilityName = 'Truthtell'
         self.keywords = ['truthtell','tt']
     
-    def getEventsFor(self,player,targetPlayer):
+    def getEventsFor(self,player,args):
         """ Calls guardedEventsFor to check if the player has a truthtell.
         """
-        return guardedEventsFor(self,player,targetPlayer)
+        return guardedEventsFor(self,player,args)
     
     def onSuccess(self,player,args)
         """ Parses "rest of string" - should be in the form "on <Player>"
