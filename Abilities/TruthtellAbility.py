@@ -30,4 +30,4 @@ class TruthtellAbility(Ability):
                 events.append(SendEvent(gameMaster, player.getName() + ' is using a truthtell on ' + player.getName() +'.'))
                 return (True,events)
         else: 
-            return (False,[SendEvent(player,'Improperly formatted truthtell.')]
+            return (False,[SendEvent(player,'Improperly formatted truthtell.')])
