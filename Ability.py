@@ -1,19 +1,19 @@
 class Ability:
     """ An abstract class that specific Abilities should extend
     """
-    def __init__(name, keywords):
+    def __init__(self, name, keywords):
         self.name = name
         self.keywords = keywords
 
-    def getName():
+    def getName(self):
         return self.name
 
-    def getKeywords():
+    def getKeywords(self):
         """ Returns a list of keywords for this Ability.
         """
         return self.keywords
 
-    def getEventsFor(player, arg):
+    def getEventsFor(self, player, arg):
         """ Sub-classes must override this method.
             Returns a list of events that perform the state changes.
         """
