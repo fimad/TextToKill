@@ -7,4 +7,4 @@ class SendEvent(Event):
         self.message = message
 
     def perform(self, game):
-        game.getOutbox().sendText(self.player.getContact(), self.message) #TODO: update player.getContact() once it's API is defined
+        game.getOutbox().sendText(self.player.getContact(), self.message)

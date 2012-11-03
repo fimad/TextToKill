@@ -11,6 +11,17 @@ class Character:
     def getName(self):
         return self.name
     
+    def hasAbility(self, name):
+        return self.abilityList.count(name) > 0
+    
+    def removeAbility(self, name):
+        value = self.abilityList[self.abilityList.index(name)]
+        self.abilityList.remove(name)
+        return value
+
+    def addAbility(self, name):
+        self.abilityList.append(name)
+
     def getAbilityList(self):
         return self.abilityList
 

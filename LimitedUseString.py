@@ -10,8 +10,14 @@ class LimitedUseString(str):
         return val
 
     def decrement(self):
-        """ Returns a new LimitedUseString that has one less use """
+        """ Returns a new LimitedUseString that has one less use
+        """
         return LimitedUseString(self.value, self.usesLeft-1)
+
+    def getUsesLeft(self):
+        """ Returns the number of uses left for this ability
+        """
+        return self.usesLeft
 
     def isValid(self):
         """ Are there any uses left? """

@@ -1,5 +1,4 @@
 from Character import Character
-from OutputAddress import OutputAddress
 
 class Player:
     

@@ -12,13 +12,13 @@ class StealAbility(Ability):
         """ Sub-classes must override this method.
             Returns a list of events that perform the state changes.
         """
-        return guardedEventsFor(self, player, args, onSuccess):
+        return guardedEventsFor(self, player, args, onSuccess, True):
 
-    def onSuccess(self, player, args):
+    def onSuccess(self, player, args, oldName):
         argList = re.split(' from ', args)
         if( argList.size() == 2 ):
-            return [StealEvent(p
+            return (True, [StealEvent(player, argList[1], argList[0], oldName)])
         else:
-            return [SendEvent(player,"Poorly formatted steal.")]
+            return (False, [SendEvent(player,"Poorly formatted steal.")])
 
 
