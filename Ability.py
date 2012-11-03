@@ -4,12 +4,13 @@ class Ability:
     def __init__(self, name, keywords):
         self.name = name
         self.keywords = keywords
-
-    def useAbility(self,character):
-        if character.hasAbility():
-                Character.removeAbility(Ability)
-                return True
-        return False
+    
+    def guardedEventsFor(self, player, args, onSuccess):
+        if player.getCharacter().hasAbility(self.name) :
+            player.getCharacter().removeAbility(self.name)
+            return onSuccess(self, player, args)
+        else:
+            return [SendEvent(player, "You don't have that ability!")]
 
     def getName(self):
         return self.name
@@ -24,6 +25,7 @@ class Ability:
             Returns a list of events that perform the state changes.
         """
         pass
+        
 
 '''
 class Truthtell(Ability):
