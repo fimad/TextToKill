@@ -14,8 +14,26 @@ class Character:
     getAbilityList():
         return self.abilityList
     
-    get.itemList():
+    getItemList():
         return self.itemList
         
-    get.description():
+    getDescription():
         return self.description
+
+    hasAbility(self, abl):
+        return (abl in abilityList)
+
+    addAbility(self, abl):
+        abilityList.add(abl)
+    
+    removeAbility(self, abl):
+        abilityList.remove(abl)
+            
+    hasItem(self, itm)
+        return (itm in itemList)
+
+    addItem(self, itm):
+        itemList.add(itm)
+
+    removeItem(self, itm):
+        abilityList.remove(itm)
