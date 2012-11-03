@@ -2,7 +2,7 @@ from abilities import Ability
 
 class Character:
     
-    __init__(self, name, abilityList, description):
+    def __init__(self, name, abilityList, description):
         self.name = name
         self.abilityList = abilityList
         self.itemList = itemList
