@@ -5,14 +5,14 @@ class Event:
         self.time = time
 
     def when():
-    """ When should this event take place.
-    """
+        """ When should this event take place.
+        """
         return self.time
 
     def perform():
-    """ Implement this method in children clases to define the semantics of
-        this event
-    """
+        """ Implement this method in children clases to define the semantics of
+            this event
+        """
         pass
 
     """ Define an ordering based on the time. """
