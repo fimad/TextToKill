@@ -2,7 +2,7 @@ from Player import Player
 from Game import Game
 from Event import Event
 
-class TruthtellAbility(Ability):
+class AbilitiesAbility(Ability):
 
     def __init__(self):
         self.abilityName = 'Abilities'
