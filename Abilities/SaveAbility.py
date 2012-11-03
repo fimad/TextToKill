@@ -7,8 +7,7 @@ from KillAbility import KillAbility
 class SaveAbility(Ability):
 
     def __init__(self):
-        self.abilityName = 'Save'
-        self.keywords = ['save', 'sa']
+        Ability.__init__(self, "Save", ["save","sa"])
 
     def getEventsFor(self, player, targetPlayer):
         """ Calls guardedEventsFor to check if the player has a save.
