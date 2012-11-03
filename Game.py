@@ -64,7 +64,7 @@ class Game:
             Ever.
         """
         while( True ):
-            step()
+            self.step()
 
     def step(self):
         """ Perform one step of the game logic.
