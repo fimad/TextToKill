@@ -23,7 +23,7 @@ class Game:
             self.players[player.getName()] = player
 
         self.abilities = {}
-        for ability in abilites:
+        for ability in abilities:
             self.abilities[ability.getName()] = ability
 
     def getGameMaster(self):
