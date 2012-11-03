@@ -1,11 +1,11 @@
-import Queue
 from datetime import datetime
-from time import time
+import time
 
 from Inbox import Inbox
 from Outbox import Outbox
 from Parser import Parser
 from Abilities.ErrorAbility import ErrorAbility
+from PriorityQueue import PriorityQueue
 
 class Game:
     """ Defines a running instance of a Murder Mystery.
@@ -14,7 +14,7 @@ class Game:
     def __init__(self, abilities, players):
         self.gm = players[0]
         self.errorAbility = ErrorAbility()
-        self.eventQueue = Queue.PriorityQueue()
+        self.eventQueue = PriorityQueue()
         self.parser = Parser()
         self.inbox = Inbox()
         self.outbox = Outbox()
