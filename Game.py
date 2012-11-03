@@ -56,10 +56,15 @@ class Game:
     def isValidPlayer(self, name):
         return name.lower() in self.player
 
-    def getPlayer(self, name):
-        return self.player[name]
+    def addPlayer(self, player):
+        if player.getName().lower() not in self.players:
+            self.players[player.getName().lower()] = player
+            print "Adding player: " + player.getName()
 
-    def getPlayerNames(self, name):
+    def getPlayer(self, name):
+        return self.players[name]
+
+    def getPlayerNames(self):
         return self.players.keys()
 
     def removePlayer(self, name):
@@ -81,7 +86,7 @@ class Game:
         """
         #process incoming messages
         newMessages = self.inbox.poll()
-        commands = self.parser.parse(self.abilities.values(), newMessages, self.errorAbility)
+        commands = self.parser.parse(self, self.abilities.values(), newMessages, self.errorAbility)
         for (sender,ability,args) in commands:
             print "Handling '"+ability.getName()+"' for '"+sender+"'"
             for player in self.players.values():
