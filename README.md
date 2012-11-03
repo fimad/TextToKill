@@ -1,4 +1,4 @@
 TextToKill
 ==========
 
-A tool for 
+A tool for automating murder mysteries.
