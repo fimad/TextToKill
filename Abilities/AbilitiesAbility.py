@@ -6,8 +6,7 @@ from Event import Event
 class AbilitiesAbility(Ability):
 
     def __init__(self):
-        self.abilityName = 'Abilities'
-        self.keywords = ['abilities','ab']
+        Ability.__init__(self, "Abilities", ["abilities","ab"])
     
     def getEventsFor(self,game,player,args):
         """Checks what abilities the player has, and sends them 
