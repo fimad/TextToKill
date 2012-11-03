@@ -3,7 +3,7 @@ from OutputAddress import OutputAddress
 
 class Player:
     
-    __init__(self, name, contact, character):
+    def __init__(self, name, contact, character):
         self.name = name
         self.contact = contact
         self.character = character

@@ -1,6 +1,3 @@
-from Character import Character
-from Event import Event
-
 class Ability:
     """ An abstract class that specific Abilities should extend
     """
