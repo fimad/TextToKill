@@ -13,11 +13,17 @@ class TruthtellAbility(Ability):
         """
         return guardedEventsFor(self,player,targetPlayer)
     
-    def onSuccess(self,player,targetPlayer)
-        """ Sends messages to the player, the target player, and the GM.
+    def onSuccess(self,player,args)
+        """ Parses "rest of string" - should be in the form "on <Player>"
+            Sends messages to the player, the target player, and the GM.
             Is called by guardedEventsFor.
         """
-        SendEvent(targetPlayer, player.getName() + ' is using a truthtell on you. Please find the game master.')
-        SendEvent(player, player.getName() + ' has been notified. Please find the game master.')    
-        gameMaster = Game.getGameMaster()
-        SendEvent(gameMaster, player.getName() + ' is using a truthtell on ' + player.getName() +'.')
+        words = args.partition(' ')
+        if words[2] in Game.getPlayerNames():
+            targetPlayer = words[2]
+            SendEvent(targetPlayer, player.getName() + ' is using a truthtell on you. Please find the game master.')
+            SendEvent(player, player.getName() + ' has been notified. Please find the game master.')   
+            gameMaster = Game.getGameMaster()
+            SendEvent(gameMaster, player.getName() + ' is using a truthtell on ' + player.getName() +'.')
+        else: 
+            SendEvent(targetPlayer, words[2] + ' is not an active player.')
