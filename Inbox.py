@@ -17,7 +17,7 @@ class Inbox:
         for inputType in self.inputTypes:
             rawMessage = self.update(inputType)
             if(rawMessage):
-                rawMessages.append(rawMessaget)
+                rawMessages.append(rawMessage)
         return rawMessages
         
     def extract_body(self, payload):

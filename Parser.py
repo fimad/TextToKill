@@ -12,7 +12,7 @@ class Parser:
         for message in messages:
             (sender,text) = message
             validKeywords = self.getValidKeywords(abilities)
-            parsed = self.parseText(sender,text,validKeywords,Error)
+            parsed = self.parseText(sender,text.rstrip(),validKeywords,Error)
             parsedList.append(parsed)
         return parsedList
     

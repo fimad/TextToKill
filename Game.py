@@ -87,16 +87,18 @@ class Game:
             for player in self.players.values():
                 if( player.getContact() == sender ):
                     print "\tRunning the ability!"
-                    ability.getEventsFor(self, player, args)
+                    self.addEvents(ability.getEventsFor(self, player, args))
                     break
 
         #Process the queue of events
         while( not self.eventQueue.empty() ):
             event = self.eventQueue.get()
             if( event.when() < datetime.now() ):
-                event.perform()
+                print "Performing an event"
+                event.perform(self)
             else:
                 #Doesn't support peeking, so shove it back in the queue if it
                 #shouldn't happen yet
                 self.eventQueue.put(event)
+                break
 

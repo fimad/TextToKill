@@ -2,6 +2,7 @@ from Ability import Ability
 from Player import Player
 from Game import Game
 from Event import Event
+from Events.SendEvent import SendEvent
 
 class AbilitiesAbility(Ability):
 
