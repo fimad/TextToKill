@@ -17,6 +17,13 @@ class Inbox:
         for inputType in self.inputTypes:
             rawMessages.append(self.update(inputType))
         return rawMessages
+        
+    def extract_body(self, payload):
+        """ helper method for gmail updating """
+        if isinstance(payload,str):
+            return payload
+        else:
+            return '\n'.join([self.extract_body(part.get_payload()) for part in payload])
 
     def update(self, inputType):
         """ updates the message list from a given input """
@@ -37,7 +44,7 @@ class Inbox:
                             sender = msg['from']
                             #print(sender)
                             payload=msg.get_payload()
-                            body=extract_body(payload)
+                            body=self.extract_body(payload)
                             #print(body)
                     typ, response = conn.store(num, '+FLAGS', r'(\Seen)')
                     return (sender, body)
@@ -48,9 +55,3 @@ class Inbox:
                     pass
                 conn.logout()
                 
-    def extract_body(payload):
-        """ helper method for gmail updating """
-        if isinstance(payload,str):
-            return payload
-        else:
-            return '\n'.join([extract_body(part.get_payload()) for part in payload])
