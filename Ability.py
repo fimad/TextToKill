@@ -9,7 +9,11 @@ class Ability:
         self.keywords = keywords
     
     def guardedEventsFor(self, player, args, onSuccess):
-        if player.getCharacter().hasAbility(self.name) :
+    """ Checks if player has this Ability and if so, removes it
+        from their Ability list and calls onSuccess. If player 
+        does not have this Ability, returns a SendEvent.
+    """
+        if player.getCharacter().hasAbility(self.name):
             player.getCharacter().removeAbility(self.name)
             return onSuccess(self, player, args)
         else:
@@ -28,6 +32,7 @@ class Ability:
             Returns a list of events that perform the state changes.
         """
         pass
+        
         
 
 '''
