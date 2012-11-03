@@ -1,11 +1,14 @@
 from datetime import datetime
 import time
+import random
 
 from Inbox import Inbox
 from Outbox import Outbox
 from Parser import Parser
 from Abilities.ErrorAbility import ErrorAbility
 from PriorityQueue import PriorityQueue
+from Events.SendEvent import SendEvent
+
 
 class Game:
     """ Defines a running instance of a Murder Mystery.
@@ -56,12 +59,15 @@ class Game:
         return self.abilities.keys()
 
     def isValidPlayer(self, name):
-        return name.lower() in self.player
+        return name.lower() in self.players
 
     def addPlayer(self, player):
         if player.getName().lower() not in self.players:
             self.players[player.getName().lower()] = player
-            print "Adding player: " + player.getName()
+#print "Adding player: " + player.getName()
+            if self.infectedPlayer == None :
+                self.addEvent(SendEvent(player,"YOU'VE BEEN INFECTED!"))
+                self.infectedPlayer = player
 
     def getPlayer(self, name):
         return self.players[name]
@@ -77,10 +83,10 @@ class Game:
         """ Run the game, and Don't stop.
             Ever.
         """
-        print "Starting the main loop!"
+#print "Starting the main loop!"
         while( True ):
             self.step()
-            time.sleep(5)
+            time.sleep(1)
 
     def step(self):
         """ Perform one step of the game logic.
@@ -90,10 +96,10 @@ class Game:
         newMessages = self.inbox.poll()
         commands = self.parser.parse(self, self.abilities.values(), newMessages, self.errorAbility)
         for (sender,ability,args) in commands:
-            print "Handling '"+ability.getName()+"' for '"+sender+"'"
+#print "Handling '"+ability.getName()+"' for '"+sender+"'"
             for player in self.players.values():
                 if( player.getContact() == sender ):
-                    print "\tRunning the ability!"
+#print "\tRunning the ability!"
                     self.addEvents(ability.getEventsFor(self, player, args))
                     break
 
@@ -101,9 +107,15 @@ class Game:
         while( not self.eventQueue.empty() ):
             event = self.eventQueue.get()
             if( event.when() < datetime.now() ):
-                print "Performing an event"
+#print "Performing an event"
                 event.perform(self)
-                print self.infectedPlayer + " is now infected!"
+                print "\n\n"
+                print "--------------------------------------------------"
+                print "- " + self.infectedPlayer.getName() + " is now infected!"
+                print "--------------------------------------------------\n"
+                playerList = self.players.values()
+                random.shuffle(playerList)
+                print "Random players: " + ", ".join(map(lambda p: p.getName(), playerList)[:4])
             else:
                 #Doesn't support peeking, so shove it back in the queue if it
                 #shouldn't happen yet

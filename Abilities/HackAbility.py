@@ -1,8 +1,8 @@
 from re import search
 from Player import Player
-from Game import Game
 from Event import Event
 from Ability import Ability
+from Events.SendEvent import SendEvent
 
 class HackAbility(Ability):
 
@@ -12,8 +12,10 @@ class HackAbility(Ability):
     def getEventsFor(self,game,player,args):
         """Hacks another player.
         """
-        if Game.isValidPlayer(args):
-            targetPlayer = Game.getPlayer(args)
-            return (True, [SendEvent(targetPlayer,'You\'ve been infected!')])
-        else:
-            return (False, [SendEvent(player,'Typo? (Try again!)')])
+        if game.infectedPlayer  == player:
+            if game.isValidPlayer(args) :
+                targetPlayer = game.getPlayer(args)
+                game.infectedPlayer = targetPlayer
+                return [SendEvent(targetPlayer,'You\'ve been infected!')]
+            else:
+                return [SendEvent(player,'Typo? (Try again!)')]
