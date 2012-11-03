@@ -9,13 +9,13 @@ class Game:
     """ Defines a running instance of a Murder Mystery.
         Handles the initialization of the various game states.
     """
-    def __init__(self):
-        self.players = {}
-        self.gm = None #TODO: fill me in some
-        self.abilities = {}
+    def __init__(self, abilities, players):
+        self.gm = players[0]
+        self.players = players[1:]
+        self.abilities = abilities
         self.errorAbility = ErrorAbility()
         self.eventQueue = Queue.PriorityQueue()
-        self.parser =  None #TODO: define me!
+        self.parser = Parser()
         self.inbox = Inbox()
         self.outbox = Outbox()
 
