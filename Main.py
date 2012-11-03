@@ -22,6 +22,7 @@ class Main(QMainWindow):
         self.gui.createDoneButton.released.connect(self.goBack)
         self.gui.setupDoneButton.released.connect(self.goBack)
         self.gui.gameNameEdit.editingFinished.connect(self.setGameName)
+        self.gui.setGameAbilButton.released.connect(self.setAbilList)
         
         
     # Custom slots defined here    
@@ -41,6 +42,13 @@ class Main(QMainWindow):
     def setGameName(self):
         self.gameDescription.name = self.gui.gameNameEdit.text()
         print "Game name set"
+        
+    def setAbilList(self):
+        abilities = self.gui.scrollArea.selectedItems()
+        for ability in abilities:
+            self.gameDescription.abilityList.append(ability.text())
+        self.gui.abilitiesDropdown.addItems(self.gameDescription.abilityList)
+        print "Ability lists set"
         
     # FIXME
     def getPossibleAbilities(self):
