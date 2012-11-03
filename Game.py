@@ -83,6 +83,7 @@ class Game:
         newMessages = self.inbox.poll()
         commands = self.parser.parse(self.abilities.values(), newMessages, self.errorAbility)
         for (sender,ability,args) in commands:
+            print "Handling '"+ability.getName()+"' for '"+sender+"'"
             for player in self.players.values():
                 if( player.getContact() == sender ):
                     ability.getEventsFor(self, player, args)
