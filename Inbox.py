@@ -4,8 +4,12 @@ import email
 class Inbox:
     """ Handles input collection for the game"""
     
-    def __init__(self, inputTypes=["gmail"]):
+    def __init__(self, inputTypes=["gmail"],
+                gmailAddress="texttokill@gmail.com",
+                gmailPassword="murdermystery"):
         self.inputTypes = inputTypes
+        self.gmailAddress = gmailAddress
+        self.gmailPassword = gmailPassword
         
     def poll(self):
         """ returns a list of sender, message tuples """
@@ -18,7 +22,7 @@ class Inbox:
         """ updates the message list from a given input """
         if inputType == "gmail":
             conn = imaplib.IMAP4_SSL("imap.gmail.com", 993)
-            conn.login("texttokill@gmail.com", "murdermystery")
+            conn.login(self.gmailAddress, self.gmailPassword)
             conn.select()
             #typ, data = conn.search(None, 'UNSEEN')
             typ, data = conn.search(None, 'SEEN')
