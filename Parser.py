@@ -35,11 +35,7 @@ class Parser:
         '''
         text = text.lower()
         words = text.partition(' ')
-        if words[0] == "register" :
-            player = Player(words[2], sender, Character("Char",[], ["Hack"], "desc"))
-            game.addPlayer(player)
-            return None
-        elif words[0] in validKeywords:
+        if words[0] in validKeywords:
             abilityObject = validKeywords[words[0]]
             restOfString = words[2]
         else:
