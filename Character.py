@@ -12,11 +12,11 @@ class Character:
         return self.name
     
     def hasAbility(self, name):
-        return self.abilityList.count(name) > 0
+        return map(lambda a:a.lower(),self.abilityList).count(name.lower()) > 0
     
     def removeAbility(self, name):
-        value = self.abilityList[self.abilityList.index(name)]
-        self.abilityList.remove(name)
+        value = [a for a in self.abilityList if a.lower() == name.lower()][0]
+        self.abilityList = [a for a in self.abilityList if a.lower() != name.lower()]
         return value
 
     def addAbility(self, name):
@@ -26,13 +26,13 @@ class Character:
         return self.abilityList
 
     def hasItem(self, item):
-        return self.itemList.count(item) > 0
+        return map(lambda a:a.lower(),self.itemList).count(item.lower()) > 0
 
     def addItem(self, item):
         self.itemList.append(item)
 
     def removeItem(self, item):
-        self.itemList.remove(item)
+        self.itemList = [i for i in self.itemLits if i.lower() != item.lower()]
     
     def getItemList(self):
         return self.itemList

@@ -3,6 +3,8 @@ from Game import Game
 from Event import Event
 from Ability import Ability
 from KillAbility import KillAbility
+#from Events.SaveEvent import SaveEvent
+from Events.StealEvent import StealEvent
 
 class SaveAbility(Ability):
 
@@ -12,7 +14,7 @@ class SaveAbility(Ability):
     def getEventsFor(self, game, player, targetPlayer):
         """ Calls guardedEventsFor to check if the player has a save.
         """
-        return guardedEventsFor(self, player, targetPlayer)
+        return self.guardedEventsFor(game, player, targetPlayer, SaveAbility.onSucess)
         
     def onSuccess(self, game, player, targetPlayer):
         """ Sends messages to everyone, performs save event.
@@ -25,5 +27,5 @@ class SaveAbility(Ability):
             else:
                 events.append(SendEvent(player, targetPlayer.get(Name) + ' is not dying.'))
             return (True, events)
-         else:
+        else:
             return (False, SendEvent(player, 'Improperly formatted save.'))

@@ -10,25 +10,26 @@ class StealEvent(Event):
         self.oldName = oldName
 
     def perform(self, game):
-        target = game.getPlayer(self.targetName).getCharacter()
-        if( target.hasItem(wanted) ):
-            target.removeItem(wanted)
-            player.addItem(wanted)
+        targetPlayer = game.getPlayer(self.targetName)
+        target = targetPlayer.getCharacter()
+        if( target.hasItem(self.wanted) ):
+            target.removeItem(self.wanted)
+            self.player.getCharacter().addItem(self.wanted)
             return [
-                SendEvent(target,"You lost your '"+wanted+"' item!") ,
-                SendEvent(player,"You have gained a '"+wanted+"' item!")
+                SendEvent(targetPlayer,"You lost your '"+self.wanted+"' item!") ,
+                SendEvent(self.player,"You have gained a '"+self.wanted+"' item!")
             ]
-        elif( target.hasAbility(wanted) ):
-            target.removeAbility(wanted)
-            player.addAbility(wanted)
+        elif( target.hasAbility(self.wanted) ):
+            target.removeAbility(self.wanted)
+            self.player.getCharacter().addAbility(self.wanted)
             return [
-                SendEvent(target,"You lost your '"+wanted+"' ability!") ,
-                SendEvent(player,"You have gained the ability to '"+wanted+"'!")
+                SendEvent(targetPlayer,"You lost your '"+self.wanted+"' ability!") ,
+                SendEvent(self.player,"You have gained the ability to '"+self.wanted+"'!")
             ]
         else:
             newName = self.oldName.decrement()
             if( newName.isValid() ):
                 self.player.getCharacter().addAbility(newName)
-                return [ SendEvent(target,"Foiled! You have "+newName.getUsesLeft()+" attempts left for this steal.") ]
+                return [ SendEvent(self.player,"Foiled! You have "+str(newName.getUsesLeft())+" attempts left for this steal.") ]
             else:
-                return [ SendEvent(target,"Blast! You've exhausted all of steal's attempts.") ]
+                return [ SendEvent(self.player,"Blast! You've exhausted all of this steal's attempts.") ]

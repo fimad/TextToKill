@@ -38,8 +38,9 @@ class Game:
     def addEvents(self, events):
         """ Schedules a list of events to be run.
         """
-        for event in events:
-            self.eventQueue.put(event)
+        if(events):
+            for event in events:
+                self.eventQueue.put(event)
 
     def getOutbox(self):
         return self.outbox
@@ -54,10 +55,10 @@ class Game:
         return self.abilities.keys()
 
     def isValidPlayer(self, name):
-        return name.lower() in self.player
+        return name.lower() in self.players
 
     def getPlayer(self, name):
-        return self.player[name]
+        return self.players[name]
 
     def getPlayerNames(self, name):
         return self.players.keys()
@@ -95,7 +96,7 @@ class Game:
             event = self.eventQueue.get()
             if( event.when() < datetime.now() ):
                 print "Performing an event"
-                event.perform(self)
+                self.addEvents(event.perform(self))
             else:
                 #Doesn't support peeking, so shove it back in the queue if it
                 #shouldn't happen yet

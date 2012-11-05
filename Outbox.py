@@ -15,7 +15,7 @@ class Outbox:
         self.gmailAddress = gmailAddress
         self.gmailPassword = gmailPassword
 
-    def sendText(self, to, text, subject="MOD"):
+    def sendText(self, to, text, subject=""):
         """ sends a text with subject and text to a player """
         #msg = MIMEMultipart()
         msg = MIMEText(text)
