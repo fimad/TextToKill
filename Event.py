@@ -3,7 +3,7 @@ from datetime import timedelta
 
 class Event:
     def __init__(self, offset=0):
-        self.time = datetime.now()+timedelta(offset)
+        self.time = datetime.now()+timedelta(0,offset)
 
     def when(self):
         """ When should this event take place.

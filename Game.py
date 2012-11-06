@@ -42,6 +42,11 @@ class Game:
             for event in events:
                 self.eventQueue.put(event)
 
+    def removeEvent(self, event):
+        """ Removes a specific event from the priority queue
+        """
+        self.eventQueue.remove(event)
+
     def getOutbox(self):
         return self.outbox
 
@@ -49,7 +54,7 @@ class Game:
         return name.lower() in self.abilities
 
     def getAbility(self, name):
-        return self.abilities[name]
+        return self.abilities[name.lower()]
 
     def getAbilityNames(self):
         return self.abilities.keys()
@@ -58,14 +63,14 @@ class Game:
         return name.lower() in self.players
 
     def getPlayer(self, name):
-        return self.players[name]
+        return self.players[name.lower()]
 
-    def getPlayerNames(self, name):
+    def getPlayerNames(self):
         return self.players.keys()
 
     def removePlayer(self, name):
         if( self.isValidPlayer(name) ):
-            del self.players[name]
+            del self.players[name.lower()]
 
     def run(self):
         """ Run the game, and Don't stop.

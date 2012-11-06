@@ -1,5 +1,6 @@
 from Event import Event
 from Events.SendEvent import SendEvent
+from Events.BroadcastEvent import BroadcastEvent
 
 class KillEvent(Event):
     def __init__(self, playerName):
@@ -8,8 +9,8 @@ class KillEvent(Event):
 
     def perform(self, game):
         player = game.getPlayer(self.playerName)
-        game.getAbility("Kill").removeSpecificKill(self)
+        game.getAbility("Kill").removeSpecificKill(self.playerName,self)
         game.removePlayer(self.playerName)
 
-        game.addEvents([SendEvent(player,"The world mourns for the loss of a hero. You have died.") ,
-        BroadcastEvent("Lo! Fellow adventurers, a red sun rises, your fellow '"+playerName+"' has died of dysentery")])
+        return [SendEvent(player,"The world mourns for the loss of a hero. You have died.") ,
+        BroadcastEvent("Lo! Fellow adventurers, a red sun rises, your fellow '"+self.playerName+"' has died of dysentery and knife wounds.")]

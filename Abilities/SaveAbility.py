@@ -3,8 +3,8 @@ from Game import Game
 from Event import Event
 from Ability import Ability
 from KillAbility import KillAbility
-#from Events.SaveEvent import SaveEvent
-from Events.StealEvent import StealEvent
+from Events.SendEvent import SendEvent
+from Events.BroadcastEvent import BroadcastEvent
 
 class SaveAbility(Ability):
 
@@ -14,18 +14,20 @@ class SaveAbility(Ability):
     def getEventsFor(self, game, player, targetPlayer):
         """ Calls guardedEventsFor to check if the player has a save.
         """
-        return self.guardedEventsFor(game, player, targetPlayer, SaveAbility.onSucess)
+        return self.guardedEventsFor(game, player, targetPlayer, SaveAbility.onSuccess)
         
     def onSuccess(self, game, player, targetPlayer):
         """ Sends messages to everyone, performs save event.
         """
         events = []
         if game.isValidPlayer(targetPlayer):
-            if targetPlayer in dyingPlayers:
-                events.append(BroadcastEvent(targetPlayer.getName() + ' has had a save used on them.'))
-                events.append(SaveEvent(targetPlayer))
+            if game.getAbility("Kill").hasActiveKill(targetPlayer) :
+                events.append(BroadcastEvent(targetPlayer + ' has had a save used on them.'))
+                killEvent = game.getAbility("Kill").removeActiveKill(targetPlayer)
+                game.removeEvent(killEvent)
+                return (True, events)
             else:
-                events.append(SendEvent(player, targetPlayer.get(Name) + ' is not dying.'))
-            return (True, events)
+                events.append(SendEvent(player, targetPlayer + ' is not dying.'))
+                return (False, events)
         else:
-            return (False, SendEvent(player, 'Improperly formatted save.'))
+            return (False, [SendEvent(player, 'Improperly formatted save.')])

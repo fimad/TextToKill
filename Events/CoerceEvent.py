@@ -11,10 +11,10 @@ class CoerceEvent(Event):
     def perform(self, game):
         if self.abilityName in game.getAbility("Kill").getKeywords():
             self.ability = game.getAbility("Kill")
-            self.keyword = game.getAbility("Kill").getKeyWords()[0]
+            self.keyword = game.getAbility("Kill").getKeywords()[0]
         if self.abilityName in game.getAbility("Save").getKeywords():
             self.ability = game.getAbility("Save")
-            self.keyword = game.getAbility("Save").getKeyWords()[0]
+            self.keyword = game.getAbility("Save").getKeywords()[0]
 
-        args = self.keyword + " " + self.targetPlayerName
-        game.addEvents( self.Ability.getEventsFor(game,playerName,args) )
+        args = self.targetPlayerName
+        return self.ability.getEventsFor(game,game.getPlayer(self.playerName),args)

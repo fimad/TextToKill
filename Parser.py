@@ -4,7 +4,7 @@ from Character import Character
 
 class Parser:
     
-    def parse(self,game,abilities,messages,Error):
+    def parse(self,abilities,messages,Error):
         ''' Takes a list of valid ability objects, a list of new
             messages of the form (sender,text), and an Error object. 
             Returns a list of tuples (sender,abilityObject,restOfString).
@@ -14,7 +14,7 @@ class Parser:
         for message in messages:
             (sender,text) = message
             validKeywords = self.getValidKeywords(abilities)
-            parsed = self.parseText(game,sender,text.rstrip(),validKeywords,Error)
+            parsed = self.parseText(sender,text.rstrip(),validKeywords,Error)
             if parsed:
                 parsedList.append(parsed)
         return parsedList
@@ -30,7 +30,7 @@ class Parser:
                 validKeywords[abilityKeyword] = ability
         return validKeywords
     
-    def parseText(self,game,sender,text,validKeywords,Error):
+    def parseText(self,sender,text,validKeywords,Error):
         ''' Takes (sender,text); returns (sender,abilityObject,restOfString).
         '''
         text = text.lower()
